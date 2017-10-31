@@ -1,0 +1,13 @@
+diff -Nurp squashfs-root/bin/start-php-fpm squashfs-root-fixup/bin/start-php-fpm
+--- squashfs-root/bin/start-php-fpm	2017-10-27 00:50:27.000000000 +0200
++++ squashfs-root-fixup/bin/start-php-fpm	2017-10-31 20:29:47.027309961 +0100
+@@ -35,7 +35,8 @@ echo "done"
+ # Tends to be between 30-50MB
+ average_php_memory_requirement=50
+ total_memory=$(mawk '/MemTotal/ {printf "%d", $2/1024}' /proc/meminfo)
+-export PHP_FPM_MAX_CHILDREN=$(($total_memory/$average_php_memory_requirement))
++#export PHP_FPM_MAX_CHILDREN=$(($total_memory/$average_php_memory_requirement))
++export PHP_FPM_MAX_CHILDREN=2
+ export PHP_MEMORY_LIMIT="$(php_memory_limit)"
+ 
+ php-fpm -R -F --fpm-config ${SNAP}/config/php/php-fpm.conf -c ${SNAP}/config/php
