@@ -1,0 +1,11 @@
+Repackage nextcloud snap's with my personal fixes for environments with
+relatively little processing power:
+
+  - only spawn two php-fpm processes at maximum, to keep load and memory
+    usage low (especially during thumbnail rendering)
+
+Clone this repository and run build.sh. The script will:
+  - download the latest snap
+  - unpack the snap using unsquashfs
+  - apply fixup.patch
+  - repack the snap using mksquashfs
